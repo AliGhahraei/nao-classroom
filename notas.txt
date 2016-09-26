@@ -1,0 +1,23 @@
+
+2 min:
+intro
+-Para qué sirve la programación.
+
+-Por qué nos gusta.
+
+1 min c/u:
+------
+input
+output
+------
+2 min c/u:
+condicionales 
+ciclos 
+listas
+
+
+*Aplicaciones verdaderas
+*Ejemplos más complicados en código de ejemplo
+4 meses -> una vez por semana -> clase de hora y media
+
+
