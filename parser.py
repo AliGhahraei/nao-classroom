@@ -3,13 +3,11 @@
 import sys
 
 def parser( fileToParse, lineToParse, stringToParse):
-	stringToParse = stringToParse.lower()
 	stringToParse = stringToParse.replace(' ','')
 	stringToParse = stringToParse.replace('\n', '')
 	f = open(fileToParse)
 	txt = f.readlines()
 	x = txt[lineToParse]
-	x = x.lower()
 	x = x.replace('\n', '')
 	x = x.replace(' ','')
 	print x
