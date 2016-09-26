@@ -2,7 +2,7 @@
 
 import sys
 
-def parser( fileToParse, lineToParse, stringToParse):
+def parse( fileToParse, lineToParse, stringToParse):
 	stringToParse = stringToParse.replace(' ','')
 	stringToParse = stringToParse.replace('\n', '')
 	f = open(fileToParse)
@@ -10,8 +10,6 @@ def parser( fileToParse, lineToParse, stringToParse):
 	x = txt[lineToParse]
 	x = x.replace('\n', '')
 	x = x.replace(' ','')
-	print x
-	print stringToParse
 	if x == stringToParse:
 		return True
 	else:
