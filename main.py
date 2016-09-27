@@ -10,8 +10,8 @@ def main():
     monitor = FileMonitor(
         tts,
         'Ejercicios/control_leds.py', 
-        [11, 12], 
-        ["color = 'azul'", "tiempo = 5"])
+        [11], 
+        ["color = 'azul'"])
     monitor.monitor_file()
     
     monitor.setData(
