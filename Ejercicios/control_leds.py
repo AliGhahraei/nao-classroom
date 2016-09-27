@@ -8,8 +8,8 @@ def get_color(color):
 	return switcher.get(color)
 
 # Escribe tu codigo aqui abajo (color = 'azul', tiempo = 5)
-color = 
-tiempo = 
+color = 'azul'
+tiempo = 5
 
 # Ahora pide al usuario que ingrese un color
 #color = raw_input("Dame un color: ")
