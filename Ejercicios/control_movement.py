@@ -18,6 +18,3 @@ tiempo = 2
 finch.wheels(rueda_izquierda, rueda_derecha)
 sleep(tiempo)
 finch.wheels(0, 0)
-
-print 'Bien hecho'
-

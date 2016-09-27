@@ -14,6 +14,3 @@ color = 'azul'
 #color = raw_input("Dame un color: ")
 
 finch.led(get_color(color))
-
-print 'Bien hecho'
-

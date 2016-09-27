@@ -30,9 +30,6 @@ class FileMonitor:
         while not exercise_completed:
             new_stamp = self.wait_and_read()
             
-            print(new_stamp)
-            print(past_stamp)
-            
             while new_stamp == past_stamp:
                 new_stamp = self.wait_and_read()
         
