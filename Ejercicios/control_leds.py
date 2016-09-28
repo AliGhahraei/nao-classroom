@@ -1,17 +1,13 @@
 from finch import Finch
 
 finch = Finch()
-
-def get_color(color):
-	switcher = {'azul': '#0000FF', 'amarillo': '#FFFF00', 'verde': '#008000'}
-	return switcher.get(color)
+switcher = {'blue': '#0000FF', 'yellow': '#FFFF00', 'green': '#008000'}
 
 
-# Escribe tu codigo aqui abajo (color = 'azul', color = 'amarillo' o color = 'verde')
-color = 'azul'
 
-# Ahora pide al usuario que ingrese un color
-# agega esta linea color = raw_input("Dame un color: ")
+###############################################################################
 
+# Write your code here. Your code asks the user for a color (blue, yellow or green)
+color = 
 
-finch.led(get_color(color))
+finch.led(switcher.get(color))

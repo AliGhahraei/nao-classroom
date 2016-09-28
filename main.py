@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from naoqi import *
 from FileMonitor import FileMonitor
+from speech import introduction
 
 import time
 
@@ -14,7 +15,7 @@ PORT = 9559
 
 def main():    
     tts = ALProxy("ALTextToSpeech", NAO_IP, PORT)
-    tts.say("Welcome")
+    introduction(tts)
     
     nextExercise = ''
     monitor = FileMonitor(tts)
@@ -27,7 +28,7 @@ def main():
             monitor.setData(
                 'Ejercicios/control_leds.py', 
                 [11], 
-                ["color = 'azul'"])
+                ["color = raw_input('color:')"])
             monitor.monitor_file()
         elif nextExercise == 'Two':
             monitor.setData(
