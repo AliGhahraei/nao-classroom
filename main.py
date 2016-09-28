@@ -1,4 +1,5 @@
 import sys
+import motion
 import time
 from naoqi import ALProxy
 
@@ -40,11 +41,11 @@ tai = "taiChi"; ##Rutina de baile del taichi
 
 #preloadBehaviors()
 
-beManagerC.runBehavior(up);
+id = beManagerC.post.runBehavior(up);
 #sleep de 0.5 seg para que tenga pausas entre acciones
-time.sleep(0.5);
 speechC.say( "Hello!" );
-speechC.say( "I am your father" );
+speechC.say( "I can speak while i am moving. I am invinsible" );
+motion.wait(id)
 
 # motionC.post.setStiffnesses ("Body", 1.0); ##Activa los motores
 # time.sleep(2);
@@ -56,6 +57,18 @@ speechC.say( "I am your father" );
 # beManagerC.runBehavior(tai);
 # time.sleep(1.5);
 
+JointNames = ["LShoulderPitch", "LShoulderRoll", "LElbowYaw", "LElbowRoll"]
+Arm1 = [-40,  25, 0, -40]
+Arm1 = [ x * motion.TO_RAD for x in Arm1]
+
+Arm2 = [-40,  50, 0, -80]
+Arm2 = [ x * motion.TO_RAD for x in Arm2]
+
+pFractionMaxSpeed = 0.6
+
 speechC.post.say( "I will stretch my arms" )
-postureProxy.goToPosture("Left", 1.0);
+motionC.angleInterpolationWithSpeed(JointNames, Arm1, pFractionMaxSpeed)
+motionC.angleInterpolationWithSpeed(JointNames, Arm2, pFractionMaxSpeed)
+motionC.angleInterpolationWithSpeed(JointNames, Arm1, pFractionMaxSpeed)
+
 exit(0);
