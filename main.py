@@ -15,7 +15,7 @@ PORT = 9559
 
 def main():    
     tts = ALProxy("ALTextToSpeech", NAO_IP, PORT)
-    introduction(tts)
+    #introduction(tts)
     
     nextExercise = ''
     monitor = FileMonitor(tts)
