@@ -22,6 +22,7 @@ def main():
     tts.say('You selected exercise number '+nextExercise)
     
     while(nextExercise != 'Zero'):
+        tts.say('You selected exercise number '+nextExercise)
         if nextExercise == 'One':
             monitor.setData(
                 'Ejercicios/control_leds.py', 
@@ -46,7 +47,7 @@ def getNextExercise():
     moduleName = "Callback"
     memValue = "PictureDetected"
     
-    recoProxy = ALBroker("pythonBroker", PC_IP,9999, NAO_IP,PORT)
+    recoProxy = ALBroker("pythonBroker", PC_IP,0, NAO_IP,PORT)
     pythonModule = Callback.Callback(moduleName)
     
     # Create a proxy to ALMemory
