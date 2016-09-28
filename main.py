@@ -16,9 +16,9 @@ PORT = 9559
 
 def main():    
     tts = ALProxy("ALTextToSpeech", NAO_IP, PORT)
-    stand(NAO_IP)
-    introduction(tts)
-    sit(NAO_IP)
+    # stand(NAO_IP)
+    # introduction(tts)
+    # sit(NAO_IP)
     
     nextExercise = ''
     monitor = FileMonitor(tts)
@@ -26,11 +26,11 @@ def main():
     while(nextExercise != 'Zero'):
         nextExercise = getNextExercise()
         
-        tts.say('You selected exercise number '+nextExercise)
+        #tts.say('You selected exercise number '+nextExercise)
         if nextExercise == 'One':
-            tts.say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.')
-            tts.say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.')
-            tts.say('You have to complete code for the following exercise. Follow the instructions in the comments')
+           # tts.say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.')
+           # tts.say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.')
+           # tts.say('You have to complete code for the following exercise. Follow the instructions in the comments')
             monitor.setData(
                 'Ejercicios/control_leds.py', 
                 [12], 
