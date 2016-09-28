@@ -10,5 +10,4 @@ The input is used and manipulated by the computer in order to do different thing
 
 
 What is input/output
-
  
