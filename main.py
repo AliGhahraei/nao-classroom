@@ -35,14 +35,10 @@ def main(robotIP):
     StiffnessOn(motionProxy)
 
     # Send NAO to Pose Init
-    postureProxy.goToPosture("StandInit", 0.5)
+    postureProxy.goToPosture("StandInit", 1)
 
     
-
-    motionProxy.angleInterpolation()
-    
-    time.sleep(1)
- #   postureProxy.goToPosture("Sit")
+    postureProxy.goToPosture("Sit")
     
 robotIp = "10.15.89.247"
 main(robotIp)
