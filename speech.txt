@@ -1,13 +1,6 @@
-The way proggramers 
-
-Lets start with the basics. We now learned that programming can do many things, but how do programmers actually solve specific problems?
+Let's start with the basics. We now learned that programming can do many things, but how do programmers actually solve specific problems?
 
 It is all reduced to inputs and outputs.
 
-An input is the information that is inserted into a program by an user or another program. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.
-
-The input is used and manipulated by the computer in order to do different things, like making a calculaton, accelerate a car, or even make a videogame character attack a zombie. These all would be  outputs, which can be defined as the information provided by a computer or program.
 
 
-What is input/output
- 
