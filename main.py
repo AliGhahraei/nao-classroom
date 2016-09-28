@@ -4,7 +4,7 @@ from FileMonitor import FileMonitor
 
 import time
 
-from Callback import Callback
+import Callback
 
 
 NAO_IP = "10.15.89.247"
@@ -14,14 +14,16 @@ PORT = 9559
 
 def main():    
     tts = ALProxy("ALTextToSpeech", NAO_IP, PORT)
-#    tts.say("Welcome to your first programming class with robots")
+    tts.say("Welcome")
     
     nextExercise = getNextExercise()
+    monitor = FileMonitor(tts)
     
-    while(next != 'Zero'):
+    tts.say('You selected exercise number '+nextExercise)
+    
+    while(nextExercise != 'Zero'):
         if nextExercise == 'One':
-            monitor = FileMonitor(
-                tts,
+            monitor.setData(
                 'Ejercicios/control_leds.py', 
                 [11], 
                 ["color = 'azul'"])
@@ -32,6 +34,10 @@ def main():
                 [11, 12, 13], 
                 ["rueda_izquierda = 0.5", "rueda_derecha = 0", "tiempo = 5"])
             monitor.monitor_file()
+        elif nextExercise == 'Zero':
+            tts.say('Goodbye!')
+        else:
+            tts.say('That number is not assigned to any lesson')
             
         nextExercise = getNextExercise()
 
@@ -40,8 +46,8 @@ def getNextExercise():
     moduleName = "Callback"
     memValue = "PictureDetected"
     
-    ALBroker("pythonBroker", PC_IP,9999, NAO_IP,PORT)
-    pythonModule = Callback()
+    recoProxy = ALBroker("pythonBroker", PC_IP,9999, NAO_IP,PORT)
+    pythonModule = Callback.Callback(moduleName)
     
     # Create a proxy to ALMemory
     try:
@@ -54,7 +60,7 @@ def getNextExercise():
     # Have the python module called back when picture recognition results change.
     try:
         memoryProxy.subscribeToEvent(memValue, moduleName, "pictureChanged")
-    except RuntimeError,e:
+    except RuntimeError, e:
         print "Error when subscribing to micro event"
         exit(1)
     
@@ -62,14 +68,13 @@ def getNextExercise():
     # Let the picture recognition run for a little while (will stop after 'count' calls of the callback).
     # You can check the results using a browser connected on your Nao, then
     # Advanced -> Memory -> type PictureDetected in the field
-    while pythonModule.nextExercise is not None:
+    while Callback.nextExercise is None:
         time.sleep(1)
     
     # unsubscribe modules
     memoryProxy.unsubscribeToEvent(memValue, moduleName)
-    #recoProxy.unsubscribe(moduleName)
     
-    return pythonModule.nextExercise
+    return Callback.nextExercise
 
     
 if  __name__ == "__main__":

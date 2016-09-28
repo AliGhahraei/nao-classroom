@@ -5,9 +5,8 @@ from parser import parse
 
 
 class FileMonitor:
-    def __init__(self, tts, fileName, lines, strings):
+    def __init__(self, tts):
         self.tts = tts
-        self.setData(fileName, lines, strings)
         
     def setData(self, fileName, lines, strings):
         self.FILE_NAME = fileName
