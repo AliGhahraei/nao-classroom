@@ -5,11 +5,17 @@ from parser import parse
 
 
 class FileMonitor:
-    def __init__(self, path):
-        self.FILE_PATH = path
+    def __init__(self, tts, fileName, lines, strings):
+        self.tts = tts
+        self.setData(fileName, lines, strings)
         
+    def setData(self, fileName, lines, strings):
+        self.FILE_NAME = fileName
+        self.LINES = lines
+        self.STRINGS = strings
+    
     def read_stamp(self):
-        return os.stat(self.FILE_PATH).st_mtime
+        return os.stat(self.FILE_NAME).st_mtime
         
     def wait_and_read(self):
         time.sleep(1)
@@ -28,8 +34,12 @@ class FileMonitor:
                 new_stamp = self.wait_and_read()
         
             past_stamp = new_stamp
-            if parse(self.FILE_PATH, 0, "daniel ramiro leyva leal "):
-                print('bien')
+            
+            parse_response = parse(self.FILE_NAME, self.LINES, self.STRINGS)
+            
+            if parse_response == 0:
+                self.tts.say('Good job!')
+                execfile(self.FILE_NAME)
                 exercise_completed = True
             else:
-                print('mal') 
+                self.tts.say('Oops! Error on line '+str(parse_response))

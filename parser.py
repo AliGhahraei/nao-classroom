@@ -1,16 +1,17 @@
 #!/usr/bin/python
 
-import sys
-
-def parse( fileToParse, lineToParse, stringToParse):
-	stringToParse = stringToParse.replace(' ','')
-	stringToParse = stringToParse.replace('\n', '')
-	f = open(fileToParse)
-	txt = f.readlines()
-	x = txt[lineToParse]
-	x = x.replace('\n', '')
-	x = x.replace(' ','')
-	if x == stringToParse:
-		return True
-	else:
-		return False
+def parse(fileToParse, linesToParse, stringsToParse):
+	fileText = open(fileToParse).readlines()
+	
+	for lineToParse, stringToParse in zip(linesToParse, stringsToParse):
+		stringToParse = stringToParse.replace(' ','')
+		stringToParse = stringToParse.replace('\n', '')
+		
+		stringParsed = fileText[lineToParse-1]
+		stringParsed = stringParsed.replace('\n', '')
+		stringParsed = stringParsed.replace(' ','')
+		
+		if(stringParsed != stringToParse):
+			return lineToParse
+		
+	return 0
