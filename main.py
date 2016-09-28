@@ -1,51 +1,68 @@
 import sys
+import motion
+import almath
 import time
 from naoqi import ALProxy
 
-def preloadBehaviors ():
-    beManagerC.preloadBehavior(up);
-    beManagerC.preloadBehavior(tai);
-    beManagerC.preloadBehavior(down);
+
+def StiffnessOn(proxy):
+  #We use the "Body" name to signify the collection of all joints
+  pNames = "Body"
+  pStiffnessLists = 1.0
+  pTimeLists = 1.0
+  proxy.stiffnessInterpolation(pNames, pStiffnessLists, pTimeLists)
 
 
-IPC = "10.15.89.247";
-PORT = 9559;
-  
-try:
-    print "try"
-    motionC = ALProxy("ALMotion", IPC, PORT)
-    beManagerC = ALProxy("ALBehaviorManager",IPC,PORT)
-    audioC = ALProxy("ALAudioDevice",IPC,PORT)
-    memoryC = ALProxy("ALMemory",IPC,PORT)
-    speechC = ALProxy("ALTextToSpeech",IPC,PORT)
+def main(robotIP):
+    """ Example showing a path of two positions
+    Warning: Needs a PoseInit before executing
+    """
+
+    # Init proxies.
+    try:
+        motionProxy = ALProxy("ALMotion", robotIP, 9559)
+    except Exception, e:
+        print "Could not create proxy to ALMotion"
+        print "Error was: ", e
+
+    try:
+        postureProxy = ALProxy("ALRobotPosture", robotIP, 9559)
+    except Exception, e:
+        print "Could not create proxy to ALRobotPosture"
+        print "Error was: ", e
+
+    # Set NAO in Stiffness On
+    StiffnessOn(motionProxy)
+
+    # Send NAO to Pose Init
+    # postureProxy.goToPosture("Sit", 0.5)
+
+    effector   = "LArm"
+    space      = motion.FRAME_ROBOT
+    axisMask   = almath.AXIS_MASK_VEL    # just control position
+    isAbsolute = False
+
+    # Since we are in relative, the current position is zero
+    currentPos = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+    # Define the changes relative to the current position
+    dx         =  0.00      # translation axis X (meters)
+    dy         =  0.00      # translation axis Y (meters)
+    dz         =  0.00      # translation axis Z (meters)
+    dwx        =  0.04      # rotation axis X (radians)
+    dwy        =  0.00      # rotation axis Y (radians)
+    dwz        =  0.00      # rotation axis Z (radians)
+    targetPos  = [dx, dy, dz, dwx, dwy, dwz]
+
+    # Go to the target and back again
+    path       = [targetPos, currentPos]
+    times      = [2.0, 4.0] # seconds
+
+    motionProxy.positionInterpolation(effector, space, path,
+                                      axisMask, times, isAbsolute)
     
-except Exception,e:
-    print "Error when creating STMOBJECT_NAME proxy:"
-    print str(e)
-    exit(1)
+    time.sleep(1)
+ #   postureProxy.goToPosture("Sit")
     
-up = "standup"; ##Rutina para pararse
-down = "sitdown"; ##Rutina para sentarse
-tai = "taiChi"; ##Rutina de baile del taichi
-
-#preloadBehaviors()
-
-beManagerC.runBehavior(up);
-#sleep de 0.5 seg para que tenga pausas entre acciones
-time.sleep(0.5);
-speechC.say( "Hello!" );
-speechC.say( "My name is Sheldon!" );
-
-motionC.post.setStiffnesses ("Body", 1.0); ##Activa los motores
-time.sleep(2);
-beManagerC.runBehavior(up);
-motionC.walkTo(0.5,0.0,0.0);
-
-speechC.say( "This is my new dance!" );
-beManagerC.runBehavior(tai);
-time.sleep(1.5);
-
-speechC.post.say( "I am tired, I'm going to sit" );
-beManagerC.runBehavior(down);
-motionC.setStiffnesses( "Body" ,0.0);
-exit(0);
+robotIp = "10.15.89.247"
+main(robotIp)
