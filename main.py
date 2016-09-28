@@ -16,12 +16,12 @@ def main():
     tts = ALProxy("ALTextToSpeech", NAO_IP, PORT)
     tts.say("Welcome")
     
-    nextExercise = getNextExercise()
+    nextExercise = ''
     monitor = FileMonitor(tts)
     
-    tts.say('You selected exercise number '+nextExercise)
-    
     while(nextExercise != 'Zero'):
+        nextExercise = getNextExercise()
+        
         tts.say('You selected exercise number '+nextExercise)
         if nextExercise == 'One':
             monitor.setData(
@@ -39,11 +39,11 @@ def main():
             tts.say('Goodbye!')
         else:
             tts.say('That number is not assigned to any lesson')
-            
-        nextExercise = getNextExercise()
 
 
 def getNextExercise():
+    Callback.nextExercise = None
+    
     moduleName = "Callback"
     memValue = "PictureDetected"
     
