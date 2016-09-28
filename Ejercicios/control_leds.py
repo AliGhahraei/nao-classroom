@@ -11,6 +11,7 @@ def get_color(color):
 color = 'azul'
 
 # Ahora pide al usuario que ingrese un color
-#color = raw_input("Dame un color: ")
+# agega esta linea color = raw_input("Dame un color: ")
+
 
 finch.led(get_color(color))
