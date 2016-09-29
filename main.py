@@ -11,7 +11,8 @@ import time
 import Callback
 
 
-NAO_IP = "10.15.89.247"
+#NAO_IP = "10.15.85.106"
+NAO_IP = '10.15.89.247'
 PC_IP = '10.15.92.237'
 PORT = 9559
 
