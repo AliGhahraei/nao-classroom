@@ -5,7 +5,7 @@ import sys
 def say(text, tts):
     tts.say(text)
 
-    typing_speed = 40
+    typing_speed = 95
 
     for word in text:
         sys.stdout.write(word)
