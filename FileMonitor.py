@@ -18,7 +18,7 @@ class FileMonitor:
         time.sleep(1)
         return self.read_stamp()
     
-    def monitor_file(self):
+    def monitor_file(self, tts):
         exercise_completed = False
         
         # time stamps tracking the modification time stamp of the file

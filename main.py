@@ -39,13 +39,13 @@ def main():
                 'exercises/control_leds.py', 
                 [12], 
                 ["color = raw_input('color:')"])
-            monitor.monitor_file()
+            monitor.monitor_file(tts)
         elif nextExercise == 'Two':
             monitor.setData(
                 'exercises/control_movement.py', 
                 [11, 12, 13], 
                 ["rueda_izquierda = 0.5", "rueda_derecha = 0", "tiempo = 5"])
-            monitor.monitor_file()
+            monitor.monitor_file(tts)
         elif nextExercise == 'Zero':
             say('Goodbye!',tts)
         else:
