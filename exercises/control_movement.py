@@ -1,4 +1,4 @@
-from finch import Finch
+from exercises.finch.finch import Finch
 from time import sleep
 
 finch = Finch()
