@@ -4,6 +4,7 @@ from naoqi.naoqi import ALModule
 from naoqi.naoqi import ALBroker
 from FileMonitor import FileMonitor
 from speech import introduction
+from say import say
 
 
 import time
@@ -20,20 +21,20 @@ PORT = 9559
 def main():    
     tts = ALProxy("ALTextToSpeech", NAO_IP, PORT)
     # stand(NAO_IP)
-    # introduction(tts)
+    # introduction()
     # sit(NAO_IP)
     
     nextExercise = ''
-    monitor = FileMonitor(tts)
+    monitor = FileMonitor()
     
     while(nextExercise != 'Zero'):
         nextExercise = getNextExercise()
         
-        tts.say('You selected exercise number '+nextExercise)
+        say('You selected exercise number '+nextExercise,tts)
         if nextExercise == 'One':
-           # tts.say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.')
-           # tts.say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.')
-           # tts.say('You have to complete code for the following exercise. Follow the instructions in the comments')
+           # say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.',tts)
+           # say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.',tts)
+           # say('You have to complete code for the following exercise. Follow the instructions in the comments',tts)
             monitor.setData(
                 'exercises/control_leds.py', 
                 [12], 
@@ -46,9 +47,9 @@ def main():
                 ["rueda_izquierda = 0.5", "rueda_derecha = 0", "tiempo = 5"])
             monitor.monitor_file()
         elif nextExercise == 'Zero':
-            tts.say('Goodbye!')
+            say('Goodbye!',tts)
         else:
-            tts.say('That number is not assigned to any lesson')
+            say('That number is not assigned to any lesson',tts)
 
 
 def getNextExercise():

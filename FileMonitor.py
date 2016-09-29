@@ -2,12 +2,10 @@ import os
 import time
 
 from parser import parse
+from say import say
 
 
 class FileMonitor:
-    def __init__(self, tts):
-        self.tts = tts
-        
     def setData(self, fileName, lines, strings):
         self.FILE_NAME = fileName
         self.LINES = lines
@@ -37,8 +35,8 @@ class FileMonitor:
             parse_response = parse(self.FILE_NAME, self.LINES, self.STRINGS)
             
             if parse_response == 0:
-                self.tts.say('Good job!')
+                say('Good job!',tts)
                 execfile(self.FILE_NAME)
                 exercise_completed = True
             else:
-                self.tts.say('Oops! Error on line '+str(parse_response))
+                say('Oops! Error on line '+str(parse_response),tts)
