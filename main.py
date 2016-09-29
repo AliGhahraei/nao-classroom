@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from naoqi import *
+from naoqi.naoqi import ALProxy
+from naoqi.naoqi import ALModule
+from naoqi.naoqi import ALBroker
 from FileMonitor import FileMonitor
 from speech import introduction
 

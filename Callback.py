@@ -1,4 +1,4 @@
-from naoqi import ALModule
+from naoqi.naoqi import ALModule
 
 nextExercise = None
 
