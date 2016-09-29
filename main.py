@@ -12,7 +12,7 @@ import Callback
 
 
 NAO_IP = "10.15.89.247"
-PC_IP = '10.15.88.70'
+PC_IP = '10.15.92.237'
 PORT = 9559
 
 
@@ -28,19 +28,19 @@ def main():
     while(nextExercise != 'Zero'):
         nextExercise = getNextExercise()
         
-        #tts.say('You selected exercise number '+nextExercise)
+        tts.say('You selected exercise number '+nextExercise)
         if nextExercise == 'One':
            # tts.say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.')
            # tts.say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.')
            # tts.say('You have to complete code for the following exercise. Follow the instructions in the comments')
             monitor.setData(
-                'Ejercicios/control_leds.py', 
+                'exercises/control_leds.py', 
                 [12], 
                 ["color = raw_input('color:')"])
             monitor.monitor_file()
         elif nextExercise == 'Two':
             monitor.setData(
-                'Ejercicios/control_movement.py', 
+                'exercises/control_movement.py', 
                 [11, 12, 13], 
                 ["rueda_izquierda = 0.5", "rueda_derecha = 0", "tiempo = 5"])
             monitor.monitor_file()
@@ -56,7 +56,7 @@ def getNextExercise():
     moduleName = "Callback"
     memValue = "PictureDetected"
     
-    recoProxy = ALBroker("pythonBroker", PC_IP,0, NAO_IP,PORT)
+    recoProxy = ALBroker("pythonBroker", PC_IP, 0, NAO_IP,PORT)
     pythonModule = Callback.Callback(moduleName)
     
     # Create a proxy to ALMemory
