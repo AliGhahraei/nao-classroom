@@ -10,51 +10,57 @@ from movement.right_arm import move_right
 
 
 import time
+from subprocess import Popen
 
 import Callback
 
 
 #NAO_IP = "10.15.85.106"
-NAO_IP = '10.15.89.247'
+NAO_IP = '10.17.12.128'
 PC_IP = '10.15.92.237'
 PORT = 9559
+EDITOR_NAME = 'gedit'
 
 
 def main():    
     tts = ALProxy("ALTextToSpeech", NAO_IP, PORT)
-    id_ = stand(NAO_IP)
-    move_left(NAO_IP, PORT, id_)
-    move_right(NAO_IP, PORT)
-    # introduction()
-    sit(NAO_IP)
+    # id_ = stand(NAO_IP)
+    # move_left(NAO_IP, PORT, id_)
+    # move_right(NAO_IP, PORT)
+    # introduction(tts)
+    # sit(NAO_IP)
     
     nextExercise = ''
-    monitor = FileMonitor()
     
     while(nextExercise != 'Zero'):
         nextExercise = getNextExercise()
         
         say('You selected exercise number '+nextExercise,tts)
         if nextExercise == 'One':
-           # say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.',tts)
-           # say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.',tts)
-           # say('You have to complete code for the following exercise. Follow the instructions in the comments',tts)
-            monitor.setData(
-                'exercises/control_leds.py', 
-                [20],
-                ["color = raw_input('color:')"])
-            monitor.monitor_file(tts)
+            #say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.',tts)
+            #say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.',tts)
+            #say('In this exercise you want to change the color of my friend FINCH. The code you will work with is already half done, but it is still missing the instruction that asks the user to input the value of the color that they want to assign to FINCH, in this case the available colors are green, blue and yellow.', tts)
+	    #time.sleep(2)
+	    #say('To do this, you have to complete the code that appears in line 20 by using the code that appears commented in line 19 as reference. After that, you will assign one of the available colors to the FINCH',tts)
+            startLesson('exercises/control_leds.py', [20], ["color = raw_input('color:')"], tts, EDITOR_NAME)
         elif nextExercise == 'Two':
-            monitor.setData(
-                'exercises/control_movement.py', 
-                [20, 21, 22],
-                ["rueda_izquierda = 0.5", "rueda_derecha = 0", "tiempo = 5"])
-            monitor.monitor_file(tts)
+            say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.',tts)
+            say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.',tts)
+            say('You have to complete code for the following exercise. Follow the instructions in the comments',tts)
+            startLesson('exercises/control_movement.py', [20, 21, 22], ["rueda_izquierda = 0.5", "rueda_derecha = 0", "tiempo = 5"], tts, EDITOR_NAME)
         elif nextExercise == 'Zero':
             say('Goodbye!',tts)
         else:
             say('That number is not assigned to any lesson',tts)
 
+def startLesson(fileName, lineList, stringList, tts, editorName):
+    monitor = FileMonitor()
+    monitor.setData(fileName, lineList, stringList) 
+    openEditor(editorName, fileName)
+    monitor.monitor_file(tts)
+
+def openEditor(editorName, fileName):
+    Popen(editorName + " " + fileName, shell=True)
 
 def getNextExercise():
     Callback.nextExercise = None

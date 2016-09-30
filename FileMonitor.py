@@ -65,8 +65,8 @@ class FileMonitor:
 
             if faulty_line is None:
                 # Run the monitored file so the child can see it working
-                say('Good job!', tts)
+                say('Good job! The program was executed successfully', tts)
                 execfile(self.FILE_NAME)
                 exercise_completed = True
             else:
-                say('Oops! Error on line ' + str(faulty_line), tts)
+                say('Oops! Error on line ' + str(faulty_line) + '. Remember, you have to complete the code that appears in line 20 by using the code that appears commented in line 19 as reference. After that, you will assign one of the available colors to the FINCH, which can be blue, yellow or green', tts)
