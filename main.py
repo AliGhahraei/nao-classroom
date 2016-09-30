@@ -5,6 +5,8 @@ from naoqi.naoqi import ALBroker
 from FileMonitor import FileMonitor
 from speech import introduction
 from say import say
+from movement.left_arm import move_left
+from movement.right_arm import move_right
 
 
 import time
@@ -20,6 +22,8 @@ PORT = 9559
 
 def main():    
     tts = ALProxy("ALTextToSpeech", NAO_IP, PORT)
+    move_left(NAO_IP, PORT)
+    move_right(NAO_IP, PORT)
     # stand(NAO_IP)
     # introduction()
     # sit(NAO_IP)
