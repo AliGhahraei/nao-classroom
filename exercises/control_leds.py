@@ -17,7 +17,7 @@ switcher = {'blue': '#0000FF', 'yellow': '#FFFF00', 'green': '#008000'}
 # defined above
 
 # CODE: color = raw_input('color:')
-color =
+color = raw_input('color:')
 
 ###############################################################################
 

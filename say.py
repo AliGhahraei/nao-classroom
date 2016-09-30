@@ -7,6 +7,9 @@ say -- Say a text and print it in terminal.
 import time
 import random
 import sys
+from movement.left_arm import move_left
+from movement.right_arm import move_right
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -24,26 +27,10 @@ def say(text, tts):
     text -- output text for the Nao and terminal.
     tts -- Nao proxy.
     """
-    tts.say(text)
+    tts.post.say(text)
 
     typing_speed = 95
-    ascii_art = """
-==================================================================
-      ___       ___           ___           ___           ___     
-     /\__\     /\  \         |\__\         /\__\         /\  \    
-    /:/  /    /::\  \        |:|  |       /:/  /        /::\  \   
-   /:/  /    /:/\:\  \       |:|  |      /:/  /        /:/\:\  \  
-  /:/  /    /::\~\:\  \      |:|__|__   /:/__/  ___   /::\~\:\  \ 
- /:/__/    /:/\:\ \:\__\     /::::\__\  |:|  | /\__\ /:/\:\ \:\__\ 
- \:\  \    \:\~\:\ \/__/    /:/~~/~     |:|  |/:/  / \/__\:\/:/  /
-  \:\  \    \:\ \:\__\     /:/  /       |:|__/:/  /       \::/  / 
-   \:\  \    \:\ \/__/     \/__/         \::::/__/        /:/  /  
-    \:\__\    \:\__\                      ~~~~           /:/  /   
-     \/__/     \/__/                                     \/__/    
 
-==================================================================="""
-
-    print bcolors.BOLD+ bcolors.OKGREEN + ascii_art
     for word in text:
         sys.stdout.write(bcolors.BOLD + bcolors.OKGREEN + word)
         sys.stdout.flush()
