@@ -15,6 +15,8 @@ def introduction(tts):
     tts - Nao proxy.
     """
     say("Hello world!", tts)
+    say("I'm Leyva and I will teach you how to program in a programming\
+        language called python", tts)
     say("Computer Science is one of the coolest subjects to study in the\
         modern world.", tts)
     say("Programming is a tool used by Scientists and Engineers to create\
