@@ -70,4 +70,4 @@ def move_right(NAO_IP, PORT):
     except BaseException, err:
         print err
 
-    motion.angleInterpolation(names, keys, times, True)
+    motion.post.angleInterpolation(names, keys, times, True)
