@@ -37,14 +37,16 @@ def main():
         
         say('You selected exercise number '+nextExercise,tts)
         if nextExercise == 'One':
-            # say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.',tts)
-            # say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.',tts)
-            # say('You have to complete code for the following exercise. Follow the instructions in the comments',tts)
+            say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.',tts)
+            say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.',tts)
+            say('In this exercise you want to change the color of my friend FINCH. The code you will work with is already half done, but it is still missing the instruction that asks the user to input the value of the color that they want to assign to FINCH, in this case the available colors are green, blue and yellow.', tts)
+	    time.sleep(2)
+	    say('To do this, you have to complete the code that appears in line 20 by using the code that appears commented in line 19 as reference. After that, you will assign one of the available colors to the FINCH',tts)
             startLesson('exercises/control_leds.py', [20], ["color = raw_input('color:')"], tts, EDITOR_NAME)
         elif nextExercise == 'Two':
-            # say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.',tts)
-            # say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.',tts)
-            # say('You have to complete code for the following exercise. Follow the instructions in the comments',tts)
+            say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.',tts)
+            say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.',tts)
+            say('You have to complete code for the following exercise. Follow the instructions in the comments',tts)
             startLesson('exercises/control_movement.py', [20, 21, 22], ["rueda_izquierda = 0.5", "rueda_derecha = 0", "tiempo = 5"], tts, EDITOR_NAME)
         elif nextExercise == 'Zero':
             say('Goodbye!',tts)
