@@ -25,7 +25,7 @@ def main():
     id_ = stand(NAO_IP)
     move_left(NAO_IP, PORT, id_)
     move_right(NAO_IP, PORT)
-    # introduction()
+    introduction(tts)
     sit(NAO_IP)
     
     nextExercise = ''
@@ -36,9 +36,9 @@ def main():
         
         say('You selected exercise number '+nextExercise,tts)
         if nextExercise == 'One':
-           # say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.',tts)
-           # say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.',tts)
-           # say('You have to complete code for the following exercise. Follow the instructions in the comments',tts)
+            say('An input is the information that is inserted into a program by an user. This information can take many forms: it can be something simple like text that was typed on the keyboard or it can be something more complex, like the image I just read a while ago.',tts)
+            say('The input is used and manipulated by the computer in order to do different things, like making a calculation, accelerate a car, or even make a videogame character attack. These all would be  outputs, which can be defined as the information provided by a computer or program.',tts)
+            say('You have to complete code for the following exercise. Follow the instructions in the comments',tts)
             monitor.setData(
                 'exercises/control_leds.py', 
                 [20],
