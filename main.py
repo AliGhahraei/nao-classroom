@@ -41,7 +41,7 @@ def main():
            # say('You have to complete code for the following exercise. Follow the instructions in the comments',tts)
             monitor.setData(
                 'exercises/control_leds.py', 
-                [19],
+                [20],
                 ["color = raw_input('color:')"])
             monitor.monitor_file(tts)
         elif nextExercise == 'Two':
