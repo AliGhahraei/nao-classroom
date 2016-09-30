@@ -14,4 +14,4 @@ def parse(fileToParse, linesToParse, stringsToParse):
 		if(stringParsed != stringToParse):
 			return lineToParse
 		
-	return 0
+	return None
