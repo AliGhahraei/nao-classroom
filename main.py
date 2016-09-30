@@ -47,7 +47,7 @@ def main():
         elif nextExercise == 'Two':
             monitor.setData(
                 'exercises/control_movement.py', 
-                [11, 12, 13], 
+                [20, 21, 22],
                 ["rueda_izquierda = 0.5", "rueda_derecha = 0", "tiempo = 5"])
             monitor.monitor_file(tts)
         elif nextExercise == 'Zero':
