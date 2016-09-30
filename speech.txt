@@ -1,6 +1,0 @@
-Let's start with the basics. We now learned that programming can do many things, but how do programmers actually solve specific problems?
-
-It is all reduced to inputs and outputs.
-
-
-
