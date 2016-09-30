@@ -1,3 +1,10 @@
+"""Simple exercise file where the kid must write code.
+
+Control the LED light in the finch robot with this small exercise. The code
+doesn't run as it is because a kid is supposed to complete the exercise first.
+NAO will open this file in an editor.
+"""
+
 from exercises.finch.finch import Finch
 from time import sleep
 
@@ -8,8 +15,8 @@ switcher = {'blue': '#0000FF', 'yellow': '#FFFF00', 'green': '#008000'}
 
 # Write your code here. Your code asks the user for a color (blue, yellow or green)
 
-# CODE: raw_input('color:')
-color = raw_input('color:')
+# CODE: color = raw_input('color:')
+color = 
 
 ###############################################################################
 
