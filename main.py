@@ -22,9 +22,8 @@ PORT = 9559
 
 def main():    
     tts = ALProxy("ALTextToSpeech", NAO_IP, PORT)
-    stand(NAO_IP)
-    time.sleep(10)
-    move_left(NAO_IP, PORT)
+    id_ = stand(NAO_IP)
+    move_left(NAO_IP, PORT, id_)
     move_right(NAO_IP, PORT)
     # introduction()
     sit(NAO_IP)
@@ -116,7 +115,7 @@ def stand(robotIP):
     postureProxy = ALProxy("ALRobotPosture", robotIP, 9559)
 
     # Send NAO to Pose Init
-    postureProxy.post.goToPosture("StandInit", 0.5)
+    return postureProxy.post.goToPosture("StandInit", 0.5)
     
 def sit(robotIP):
     # Init proxies.

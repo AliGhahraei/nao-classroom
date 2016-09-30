@@ -9,7 +9,7 @@ from naoqi.naoqi import *
 # Choregraphe simplified export in Python.
 
 
-def move_left(NAO_IP, PORT):
+def move_left(NAO_IP, PORT, wait_id):
     """Move the left arm.
 
     Keyword arguments:
@@ -69,6 +69,7 @@ def move_left(NAO_IP, PORT):
     keys.append([0.09931])
     try:
         motion = ALProxy("ALMotion", NAO_IP, PORT)
+        motion.wait(wait_id, 0)
         motion.angleInterpolation(names, keys, times, True)
     except BaseException, err:
         print err
