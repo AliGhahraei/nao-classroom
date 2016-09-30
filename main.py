@@ -39,6 +39,7 @@ def main():
 
         say('You selected exercise number '+nextExercise, tts)
         if nextExercise == 'One':
+<<<<<<< HEAD
             say("""An input is the information that is inserted into a program
                 by an user. This information can take many forms: it can be
                 something simple like text that was typed on the keyboard or it
@@ -52,16 +53,18 @@ def main():
             say('In this exercise you want to change the color of my friend
                 FINCH. The code you will work with is already half done, but it
                 is still missing the instruction that asks the user to input
-                the value of the color that they want to assign to FINCH, in
-                this case the available colors are green, blue and yellow.',
+                the value of the color that they want to assign to FINCH',
                 tts)
             time.sleep(2)
             say('To do this, you have to complete the code that appears in line
                 20 by using the code that appears commented in line 19 as
                 reference. After that, you will assign one of the available
                 colors to the FINCH', tts)
-            startLesson('exercises/control_leds.py', [20],
-                        ["color = raw_input('color:')"], tts, EDITOR_NAME)
+            startLesson('exercises/control_leds.py',
+                        [20],
+                        ["color = raw_input('color:')"],
+                        tts,
+                        EDITOR_NAME)
         elif nextExercise == 'Two':
             say('An input is the information that is inserted into a program by
                 an user. This information can take many forms: it can be
