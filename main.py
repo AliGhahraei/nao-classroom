@@ -5,6 +5,8 @@ from naoqi.naoqi import ALBroker
 from FileMonitor import FileMonitor
 from speech import introduction
 from say import say
+from movement.left_arm import move_left
+from movement.right_arm import move_right
 
 
 import time
@@ -20,9 +22,11 @@ PORT = 9559
 
 def main():    
     tts = ALProxy("ALTextToSpeech", NAO_IP, PORT)
-    # stand(NAO_IP)
+    id_ = stand(NAO_IP)
+    move_left(NAO_IP, PORT, id_)
+    move_right(NAO_IP, PORT)
     # introduction()
-    # sit(NAO_IP)
+    sit(NAO_IP)
     
     nextExercise = ''
     monitor = FileMonitor()
@@ -37,13 +41,13 @@ def main():
            # say('You have to complete code for the following exercise. Follow the instructions in the comments',tts)
             monitor.setData(
                 'exercises/control_leds.py', 
-                [12], 
+                [20],
                 ["color = raw_input('color:')"])
             monitor.monitor_file(tts)
         elif nextExercise == 'Two':
             monitor.setData(
                 'exercises/control_movement.py', 
-                [11, 12, 13], 
+                [20, 21, 22],
                 ["rueda_izquierda = 0.5", "rueda_derecha = 0", "tiempo = 5"])
             monitor.monitor_file(tts)
         elif nextExercise == 'Zero':
@@ -111,7 +115,7 @@ def stand(robotIP):
     postureProxy = ALProxy("ALRobotPosture", robotIP, 9559)
 
     # Send NAO to Pose Init
-    postureProxy.post.goToPosture("StandInit", 0.5)
+    return postureProxy.post.goToPosture("StandInit", 0.5)
     
 def sit(robotIP):
     # Init proxies.

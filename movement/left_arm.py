@@ -1,132 +1,75 @@
 # -*- coding: utf-8 -*-
-from naoqi import *
-from FileMonitor import FileMonitor
-from speech import introduction
+"""Left arm movements.
 
-import time
-
-import Callback
-
-
-NAO_IP = "10.15.89.247"
-PC_IP = '10.15.87.188'
-PORT = 9559
+Functions:
+move_left -- move the left arm
+"""
+from naoqi.naoqi import *
 
 # Choregraphe simplified export in Python.
 
-names = list()
-times = list()
-keys = list()
 
-names.append("HeadPitch")
-times.append([ 0.50000])
-keys.append([ -0.05373])
+def move_left(NAO_IP, PORT, wait_id):
+    """Move the left arm.
 
-names.append("HeadYaw")
-times.append([ 0.50000])
-keys.append([ -0.03379])
+    Keyword arguments:
+    NAO_IP -- Nao's IP
+    PORT -- Port to connect to
+    """
+    names = list()
+    times = list()
+    keys = list()
 
-names.append("LAnklePitch")
-times.append([ 0.50000])
-keys.append([ 0.85133])
+    names.append("LElbowRoll")
+    times.append([0.20000, 0.80000, 1.60000])
+    keys.append([-0.40476, -0.62483, -1.33867])
 
-names.append("LAnkleRoll")
-times.append([ 0.50000])
-keys.append([ -0.01070])
+    names.append("LElbowYaw")
+    times.append([0.20000])
+    keys.append([-1.18597])
 
-names.append("LElbowRoll")
-times.append([ 0.50000])
-keys.append([ -1.31766])
+    names.append("LHand")
+    times.append([0.20000, 0.40000, 0.80000, 1.60000])
+    keys.append([0.00524, 0.00733, 0.01257, 0.00419])
 
-names.append("LElbowYaw")
-times.append([ 0.50000])
-keys.append([ -0.52160])
+    names.append("LShoulderPitch")
+    times.append([0.20000, 0.40000, 0.80000, 1.60000])
+    keys.append([1.49933, 0.52185, -0.14486, 1.18682])
 
-names.append("LHand")
-times.append([ 0.50000])
-keys.append([ 0.00443])
+    names.append("LShoulderRoll")
+    times.append([0.20000, 0.80000, 1.60000])
+    keys.append([0.15019, 0.89361, 0.31241])
 
-names.append("LHipPitch")
-times.append([ 0.50000])
-keys.append([ -1.53396])
+    names.append("LWristYaw")
+    times.append([0.20000, 0.80000, 1.60000])
+    keys.append([0.10059, -1.82387, -1.49226])
 
-names.append("LHipRoll")
-times.append([ 0.50000])
-keys.append([ 0.27309])
+    names.append("RElbowRoll")
+    times.append([0.20000])
+    keys.append([0.40415])
 
-names.append("LHipYawPitch")
-times.append([ 0.50000])
-keys.append([ -0.57981])
+    names.append("RElbowYaw")
+    times.append([0.20000])
+    keys.append([1.18639])
 
-names.append("LKneePitch")
-times.append([ 0.50000])
-keys.append([ 1.39897])
+    names.append("RHand")
+    times.append([0.20000])
+    keys.append([0.00524])
 
-names.append("LShoulderPitch")
-times.append([ 0.50000])
-keys.append([ 1.00933])
+    names.append("RShoulderPitch")
+    times.append([0.20000])
+    keys.append([1.49941])
 
-names.append("LShoulderRoll")
-times.append([ 0.50000])
-keys.append([ 0.39266])
+    names.append("RShoulderRoll")
+    times.append([0.20000])
+    keys.append([-0.15191])
 
-names.append("LWristYaw")
-times.append([ 0.50000])
-keys.append([ -1.52944])
-
-names.append("RAnklePitch")
-times.append([ 0.50000])
-keys.append([ 0.84988])
-
-names.append("RAnkleRoll")
-times.append([ 0.50000])
-keys.append([ 0.01231])
-
-names.append("RElbowRoll")
-times.append([ 0.50000, 1.00000])
-keys.append([ 1.24258, 0.65275])
-
-names.append("RElbowYaw")
-times.append([ 0.50000])
-keys.append([ 0.51692])
-
-names.append("RHand")
-times.append([ 0.50000])
-keys.append([ 0.00525])
-
-names.append("RHipPitch")
-times.append([ 0.50000])
-keys.append([ -1.52330])
-
-names.append("RHipRoll")
-times.append([ 0.50000])
-keys.append([ -0.26381])
-
-names.append("RHipYawPitch")
-times.append([ 0.50000])
-keys.append([ -0.57981])
-
-names.append("RKneePitch")
-times.append([ 0.50000])
-keys.append([ 1.40979])
-
-names.append("RShoulderPitch")
-times.append([ 0.50000, 1.00000, 2.00000, 3.50000])
-keys.append([ 0.94805, 0.40492, -0.31940, 0.78191])
-
-names.append("RShoulderRoll")
-times.append([ 0.50000, 2.00000, 3.50000])
-keys.append([ -0.31298, -0.92328, 0.00175])
-
-names.append("RWristYaw")
-times.append([ 0.50000, 1.00000, 2.00000])
-keys.append([ -0.02305, -0.76271, 1.82387])
-
-try:
-    # uncomment the following line and modify the IP if you use this script outside Choregraphe.
-    motion = ALProxy("ALMotion", NAO_IP, 9559)
-    motion.angleInterpolation(names, keys, times, True);
-except BaseException, err:
-    print err
-
-
+    names.append("RWristYaw")
+    times.append([0.20000])
+    keys.append([0.09931])
+    try:
+        motion = ALProxy("ALMotion", NAO_IP, PORT)
+        motion.wait(wait_id, 0)
+        motion.angleInterpolation(names, keys, times, True)
+    except BaseException, err:
+        print err
