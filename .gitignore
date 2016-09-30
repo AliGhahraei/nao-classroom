@@ -1,3 +1,7 @@
+# Files created by text editors
+*~
+
+# IDE specific files (Liclipse)
 .project
 .pydevproject
 .settings
