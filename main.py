@@ -22,11 +22,12 @@ PORT = 9559
 
 def main():    
     tts = ALProxy("ALTextToSpeech", NAO_IP, PORT)
+    stand(NAO_IP)
+    time.sleep(10)
     move_left(NAO_IP, PORT)
     move_right(NAO_IP, PORT)
-    # stand(NAO_IP)
     # introduction()
-    # sit(NAO_IP)
+    sit(NAO_IP)
     
     nextExercise = ''
     monitor = FileMonitor()
